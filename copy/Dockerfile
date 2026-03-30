@@ -1,4 +1,4 @@
-FROM nginx:1.2.7
+FROM nginx:1.29.7
 RUN rm -rf /usr/share/nginx/html/*
 COPY project/ /usr/share/nginx/html/
 EXPOSE 80
