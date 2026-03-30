@@ -1,3 +1,3 @@
 function showMessage() {
-  alert("🎉 Welcome! This site is running inside Docker.");
+  alert("Welcome! This site is running inside Docker.");
 }
