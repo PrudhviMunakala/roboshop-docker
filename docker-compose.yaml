@@ -7,6 +7,29 @@ services:
     container_name: catalogue
     depends_on:
       - mongodb
+  user:
+    build:
+      context: ./user
+      dockerfile: Dockerfile
+    image: user:1.0.0
+    container_name: user
+    depends_on:
+      - redis
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: frontend:1.0.0
+    container_name: frontend
+    ports:
+      - 80:80
+    depends_on:
+      - catalogue
+      - user
+      - redis
+  redis:
+    image: redis:7.0
+    container_name: redis
   mongodb:
     build:
       context: ./mongodb
