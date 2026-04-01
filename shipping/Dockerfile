@@ -1,6 +1,6 @@
 FROM maven:3.9.14
 WORKDIR /app
-COPY src .
+COPY src ./src
 COPY pom.xml . 
 RUN mvn clean package
 RUN target/shipping-1.0.jar shipping.jar 
