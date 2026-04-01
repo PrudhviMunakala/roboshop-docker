@@ -24,8 +24,7 @@ services:
     depends_on:
       - redis
       - catalogue
-      
-    
+
   frontend:
     build:
       context: ./frontend
@@ -47,7 +46,12 @@ services:
       dockerfile: Dockerfile
     image: mongodb:1.0.0
     container_name: mongodb
-
+  mysql:
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    image: mysql:1.0.0
+    container_name: mysql
 networks:
   default:
     driver: bridge
