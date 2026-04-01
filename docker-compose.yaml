@@ -56,13 +56,13 @@ services:
       dockerfile: Dockerfile
     image: mysql:1.0.0
     container_name: mysql
-  
+
   rabbitmq:
     image: rabbitmq:3
     container_name: rabbitmq
     environment:
-     RABBITMQ_DEFAULT_USER: "roboshop"
-     RABBITMQ_DEFAULT_PASS: "Roboshop123"
+      RABBITMQ_DEFAULT_USER: "roboshop"
+      RABBITMQ_DEFAULT_PASS: "Roboshop123"
   shipping:
     build:
       context: ./shipping
@@ -84,8 +84,8 @@ services:
       USER_HOST: "user"
       USER_PORT: "8080"
       AMQP_HOST: "rabbitmq"
-      AMQP_USER: "roboshop"
-      AMQP_PASSWORD: "Roboshop123"
+      AMQP_USER: roboshop
+      AMQP_PASSWORD: Roboshop123
     depends_on:
       - rabbitmq
       - cart
