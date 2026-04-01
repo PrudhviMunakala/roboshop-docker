@@ -59,10 +59,10 @@ services:
 
   rabbitmq:
     image: rabbitmq:3
-    container_name: rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: roboshop
       RABBITMQ_DEFAULT_PASS: roboshop123
+    container_name: rabbitmq
   shipping:
     build:
       context: ./shipping
@@ -85,7 +85,7 @@ services:
       USER_PORT: "8080"
       AMQP_HOST: "rabbitmq"
       AMQP_USER: "roboshop"
-      AMQP_PASSWORD: "roboshop123"
+      AMQP_PASS: "roboshop123"
     depends_on:
       - rabbitmq
       - cart
