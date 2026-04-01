@@ -1,0 +1,22 @@
+services:
+  catalogue:
+    build:
+      context: ./catalogue
+      dockerfile: Dockerfile
+    image: catalogue:1.0.0
+    container_name: catalogue
+    depends_on:
+      - mongodb
+  mongodb:
+    build:
+      context: ./mongodb
+      dockerfile: Dockerfile
+    image: mongodb:1.0.0
+    container_name: mongodb
+
+networks:
+  default:
+    driver: bridge
+    name: roboshop
+    external: false # if true then it will use existing network if false then it will create new network with name roboshop
+
