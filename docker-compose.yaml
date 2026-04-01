@@ -36,6 +36,7 @@ services:
     depends_on:
       - catalogue
       - user
+      - shipping
 
   redis:
     image: redis:7.0
@@ -52,6 +53,14 @@ services:
       dockerfile: Dockerfile
     image: mysql:1.0.0
     container_name: mysql
+  shipping:
+    build:
+      context: ./shipping
+      dockerfile: Dockerfile
+    image: shipping:1.0.0
+    container_name: shipping
+    depends_on:
+      - mysql
 networks:
   default:
     driver: bridge
