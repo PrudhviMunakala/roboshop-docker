@@ -44,18 +44,24 @@ services:
   redis:
     image: redis:7.0
     container_name: redis
+    volumes:
+      - redis:/data
   mongodb:
     build:
       context: ./mongodb
       dockerfile: Dockerfile
     image: mongodb:1.0.0
     container_name: mongodb
+    volumes:
+      - mongodb:/data/db
   mysql:
     build:
       context: ./mysql
       dockerfile: Dockerfile
     image: mysql:1.0.0
     container_name: mysql
+    volumes:
+      - mysql:/var/lib/mysql
 
   rabbitmq:
     image: rabbitmq:3
@@ -63,6 +69,8 @@ services:
       RABBITMQ_DEFAULT_USER: roboshop
       RABBITMQ_DEFAULT_PASS: roboshop123
     container_name: rabbitmq
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
   shipping:
     build:
       context: ./shipping
@@ -95,4 +103,8 @@ networks:
     driver: bridge
     name: roboshop
     external: false # if true then it will use existing network if false then it will create new network with name roboshop
-
+volumes:
+  mongodb: # docer create volume mongodb
+  mysql:
+  redis:
+  rabbitmq:
