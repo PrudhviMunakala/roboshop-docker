@@ -14,10 +14,13 @@ RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
 # ================================
 # Stage 2: Runtime
 # ================================
-FROM python:3.9-slim AS runtime
+FROM python:3.9-alpine AS runtime
 
 EXPOSE 8080
 WORKDIR /app
+
+RUN apk add --no-cache \
+     pcre-dev
 
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop && \
     chown -R roboshop:roboshop /app
