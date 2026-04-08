@@ -19,13 +19,16 @@ FROM python:3.9-slim AS runtime
 EXPOSE 8080
 WORKDIR /app
 
+RUN addgroup -S roboshop && adduser -S roboshop -G roboshop && \
+    chown -R roboshop:roboshop /app
+
 # Copy only installed packages from builder stage
 COPY --from=builder /install /usr/local
 
 # Copy only application files needed at runtime
-COPY payment.ini .
+COPY --chown=roboshop:roboshop payment.ini .
 COPY *.py .
-
+USER roboshop
 CMD ["uwsgi", "--ini", "payment.ini"]
 
 # FROM python:3.9
